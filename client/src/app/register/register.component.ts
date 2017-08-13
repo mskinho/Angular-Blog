@@ -11,6 +11,11 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   providers: [AuthService]
 })
 export class RegisterComponent implements OnInit {
+  email: string;
+  username: string;
+  password: string;
+  confirm: string;
+  
   constructor(
     private router: Router, 
     private authService: AuthService, 

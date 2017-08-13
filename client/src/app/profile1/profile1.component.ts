@@ -11,18 +11,18 @@ import { AuthService } from '../services/auth.service';
 })
 export class Profile1Component implements OnInit {
   private sub: any;
-  user;
+  user: Object;
 
   email: string;
   username: string;
-  id;
+  id: string;
   bio: string;
-  posts;
-  feed;
+  posts: Array<any>;
+  feed: Array<any>;
 
-  Cusername;
-  Cemail;
-  Cid;
+  Cusername: string;
+  Cemail: string;
+  Cid: string;
 
   comment: string;
 
@@ -43,7 +43,7 @@ export class Profile1Component implements OnInit {
 
   loadPosts() {
     this.sub = this.activeRoute.params.subscribe(params => {
-       return this.http.get('http://localhost:3000/get/findoneuser/'+params.id)
+       return this.http.get('http://localhost:8080/get/findoneuser/'+params.id)
        .map((res) => res.json())
        .subscribe(data => {
          this.email = data.user.email
@@ -61,7 +61,6 @@ export class Profile1Component implements OnInit {
       this.Cusername = data.user.username;
       this.Cemail = data.user.email;
       this.Cid = data.user._id;
-      console.log(this.Cusername);
     })
   }
   
@@ -73,7 +72,6 @@ export class Profile1Component implements OnInit {
    loadAllPosts() {
     this.generalService.getAllPosts()
     .subscribe(data => {
-      console.log(data);
       this.feed = data.posts;
     })
   }

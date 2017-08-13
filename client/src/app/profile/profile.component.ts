@@ -3,7 +3,6 @@ import { AuthService } from '../services/auth.service';
 import { GeneralService } from '../services/general.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-profile',
@@ -12,13 +11,15 @@ import * as $ from 'jquery';
 })
 export class ProfileComponent implements OnInit {
 
-  username;
-  posts;
-  email;
-  id;
-  bio;
+  username: string;
+  posts: Array<any>;
+  email: string;
+  id: string;
+  bio: string;
 
-  users;
+  body: string;
+
+  users: Array<any>;
 
   constructor(
     private _authService: AuthService, 
@@ -27,7 +28,11 @@ export class ProfileComponent implements OnInit {
     private _flashMessagesService: FlashMessagesService
   ) { }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
     this._authService.getProfile()
     .subscribe(data => {
       this.username = data.user.username;
@@ -39,27 +44,12 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  togglePostWrapper() {
-    $('#makePostWrapper').toggle();
-  }
-  toggleAllPostsWrapper() {
-    $('#allPostWrapper').toggle();
-  }
   post(id, body, username) {
     this.generalService.makeBlogPost(id, body, username)
     .subscribe(data => {
-      console.log(data);
+      this.getUser();
+      this.body = '';
     })
-
-    this._authService.getProfile()
-    .subscribe(data => {
-      this.username = data.user.username;
-      this.email = data.user.email;
-      this.id = data.user._id;
-      this.bio = data.user.bio;
-      this.posts = data.posts;
-    })
-
   }
 
   deletePost(id) {
@@ -67,14 +57,7 @@ export class ProfileComponent implements OnInit {
     .subscribe(data => {
       this._flashMessagesService.show(data.message, { cssClass: 'alert-success',timeout: 2000 });
     })
-     this._authService.getProfile()
-    .subscribe(data => {
-      this.username = data.user.username;
-      this.email = data.user.email;
-      this.id = data.user._id;
-      this.bio = data.user.bio;
-      this.posts = data.posts;
-    })
+     this.getUser();
   }
  
 
@@ -89,15 +72,7 @@ export class ProfileComponent implements OnInit {
  postComment(id, comment, username) {
    this.generalService.postComment(id, comment, username)
    .subscribe(data => {
-     console.log(data);
    })
-    this._authService.getProfile()
-    .subscribe(data => {
-      this.username = data.user.username;
-      this.email = data.user.email;
-      this.id = data.user._id;
-      this.bio = data.user.bio;
-      this.posts = data.posts;
-    })
+    this.getUser();
  }
 }

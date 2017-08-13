@@ -11,8 +11,8 @@ import * as $ from 'jquery';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
-   users;
+   input: string;
+   users: Array<any>;
    
    constructor(
     private _authService: AuthService, 

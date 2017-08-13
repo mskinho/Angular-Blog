@@ -11,3 +11,6 @@ body {
 .panel-title {
     font-family: 'Anton', sans-serif;
 }
+a {
+    cursor: pointer;
+}

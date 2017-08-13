@@ -11,11 +11,13 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class EditPostComponent implements OnInit {
   private sub: any;
-  post;
-  body;
-  id;
-  username;
-  posted;
+  post: Object;
+  body: string;
+  id: string;
+  username: string;
+  posted: Date;
+
+  newpost: string;
 
   constructor(
     private activeRoute: ActivatedRoute, 
@@ -28,7 +30,7 @@ export class EditPostComponent implements OnInit {
   ngOnInit() {
 
       this.sub = this.activeRoute.params.subscribe(params => {
-       return this.http.get('http://localhost:3000/get/singlepost/'+params.id)
+       return this.http.get('http://localhost:8080/get/singlepost/'+params.id)
        .map((res) => res.json())
        .subscribe(data => {
          this.id = data.post._id;
@@ -43,8 +45,10 @@ export class EditPostComponent implements OnInit {
     var data = {
       body: body
     }
-    this.generalService.update(id, data)
-    this.router.navigate(['/profile'])
-    this.flashMessageService.show('Bio Updated!', { cssClass: 'alert-success',timeout: 2000 });
+    this.generalService.updatePost(id, data)
+    .subscribe(data => {
+       this.router.navigate(['/profile'])
+       this.flashMessageService.show(data.message, { cssClass: 'alert-success',timeout: 2000 });
+    })
   }
 }

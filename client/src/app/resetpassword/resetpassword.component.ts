@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ResetpasswordComponent implements OnInit {
 
+  email: string;
+
   constructor(
     private http: Http,
     private _flashMessagesService: FlashMessagesService,
@@ -24,7 +26,7 @@ export class ResetpasswordComponent implements OnInit {
     var data = {
       email: email
     }
-    this.http.post('http://localhost:3000/post/resetpassword', data)
+    this.http.post('http://localhost:8080/post/resetpassword', data)
     .map(res => res.json())
     .subscribe(data => {
       this.router.navigate(['/login'])

@@ -11,8 +11,12 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class EditBioComponent implements OnInit {
   private sub: any;
-  user;
-  bio;
+  user: any;
+  bio: string;
+  id: string;
+
+  newBio: string;
+
   constructor(
     private activeRoute: ActivatedRoute, 
     private router: Router, 
@@ -25,7 +29,7 @@ export class EditBioComponent implements OnInit {
    ngOnInit() {
 
       this.sub = this.activeRoute.params.subscribe(params => {
-       return this.http.get('http://localhost:3000/get/findoneuser/'+params.id)
+       return this.http.get('http://localhost:8080/get/findoneuser/'+params.id)
        .map((res) => res.json())
        .subscribe(data => {
         this.bio = data.user.bio;
@@ -39,15 +43,18 @@ export class EditBioComponent implements OnInit {
       bio: newBio,
       id: id
     }
-    return this.http.post('http://localhost:3000/post/updatebio/'+id, data)
+    console.log(data);
+    return this.http.post('http://localhost:8080/post/updatebio/'+id, data)
     .map(res => res.json())
     .subscribe(data => {
       if(data.success === true) {
         this.flashMessageService.show(data.message, { cssClass: 'alert-success',timeout: 2000 });
         this.router.navigate(['/profile'])
       } else {
+        if(data.success === false) {
         this.flashMessageService.show(data.message, { cssClass: 'alert-danger',timeout: 2000 });
-        return false;
+        this.router.navigate(['/profile'])
+        }
       }
     })
   }

@@ -7,7 +7,7 @@ import { GeneralService } from '../services/general.service';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  feed;
+  feed: Array<any>;
 
   constructor(
     private generalService: GeneralService

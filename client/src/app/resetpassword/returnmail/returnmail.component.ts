@@ -10,7 +10,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class ReturnmailComponent implements OnInit {
   private sub: any;
-  token;
+  token: string;
+  newpassword: string;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private http: Http,
@@ -21,7 +23,7 @@ export class ReturnmailComponent implements OnInit {
   ngOnInit() {
 
       this.sub = this.activeRoute.params.subscribe(params => {
-       return this.http.get('http://localhost:3000/get/returnmail/'+params.token)
+       return this.http.get('http://localhost:8080/get/returnmail/'+params.token)
        .map((res) => res.json())
        .subscribe(data => {
         this.token = data.token;
@@ -29,11 +31,11 @@ export class ReturnmailComponent implements OnInit {
     }) 
   }
 
-  updatePassword(newPassword) {
+  updatePassword(newpassword) {
     var data = {
-      password: newPassword
+      password: newpassword
     }
-    return this.http.post('http://localhost:3000/post/returnmail/'+this.token, data)
+    return this.http.post('http://localhost:8080/post/returnmail/'+this.token, data)
     .map(res => res.json())
     .subscribe(data => {
       this.router.navigate(['/login'])

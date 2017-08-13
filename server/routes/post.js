@@ -36,8 +36,11 @@ router.post('/contact', (req, res) => {
         text: req.body.message
          };
         smtpTransport.sendMail(mailOptions, function(err) {
-            res.json({success: true, message: 'Thank you for contacting us! we will get back to you as soon as possible.'})
-            done(err, 'done');
+            if(err) {
+                res.json({success: false, message: 'An error occured, Please try again.'})
+            } else {
+                res.json({success: true, message: 'Thank you for contacting us! we will get back to you as soon as possible.'})
+            }
         })
     }
 })
@@ -60,7 +63,30 @@ router.post('/register', (req, res) => {
                   if(err) {
                       res.json({success: false, message: 'Could not save user! Try changing your username or email.', err: err})
                   } else {
-                      res.json({success: true, message: 'Success'})
+                      var smtpTransport = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                        user: process.env.EMAIL,
+                        pass: process.env.PASSWORD,
+                            }
+                        });
+                        var mailOptions = {
+                        to: process.env.EMAIL,
+                        from: 'https://isakgranqvist.com',
+                        subject: 'Welcome | Glad to see you!',
+                        text: 
+                        `Hello! `+ req.body.username+ `, You have recently signed up at https://isakgranqvist.com`
+                        +`\n\n`+`Your email is: `+req.body.email
+                        +`\n\n`+`Your username is: `+req.body.username
+                        +`\n\n` + `Best Regards - https://isakgranqvist.com`    
+                        };
+                        smtpTransport.sendMail(mailOptions, function(err) {
+                        if(err) {
+                            res.json({success: false, message: 'An error during registration, Please try again.'})
+                        } else {
+                            res.json({success: true, message: 'Your account has been registered!'})
+                        }
+                    })
                   }
               })
            }
@@ -80,7 +106,7 @@ router.post('/login', (req, res) => {
                     res.json({ success: false, message: err})
                 } else {
                     if(!user) {
-                        res.json({ success: false, message: 'No user was found.'})
+                        res.json({ success: false, message: 'Hmm, That did not work. Are you sure you entered the correct information?'})
                     } else {
                         const validPassword = user.comparePassword(req.body.password);
                         if(!validPassword) {
@@ -220,7 +246,7 @@ router.post('/resetpassword', function(req, res) {
 				text: 'This email was sent because you (or someone else) requested a password reset at https://isakgranqvist.com/resetpassword' + '\n\n'+' Please press the link below in order to reset your password.' + 'http://'+ req.headers.host+'/returnmail/'+token+'\n\n'+'If you do not wish to change your password please ignore this email.' +'\n\n' + 'Best Regards - https://isakgranqvist.com'
 			};
 			smtpTransport.sendMail(mailOptions, function(err) {
-				res.json({success: true, message: 'Mail sent !' + req.body.email})
+				res.json({success: true, message: 'An email with instructions on how to reset password has been sent to: ' + req.body.email})
 				done(err, 'done');
 			})
 		}

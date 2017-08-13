@@ -9,7 +9,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-
+  message: string;
+  
   constructor(
     private router: Router,
     private http: Http,
@@ -23,7 +24,7 @@ export class ContactComponent implements OnInit {
     var data = {
       message: message
     }
-    this.http.post('http://localhost:3000/post/contact', data)
+    this.http.post('http://localhost:8080/post/contact', data)
     .map(res => res.json())
     .subscribe((data) => {
       if(data.success === true) {
@@ -31,7 +32,8 @@ export class ContactComponent implements OnInit {
       } else {
         var messageClass = 'alert-danger';
       }
-      this._flashMessagesService.show(data.message, {cssClass: messageClass, timeout: 2000})
+      this._flashMessagesService.show(data.message, {cssClass: messageClass, timeout: 5000})
+      this.message = '';
     })
   }
 

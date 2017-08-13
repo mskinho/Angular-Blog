@@ -38,12 +38,12 @@ export class AuthService {
   }
 
   register(userInfo) {
-    return this.http.post('http://localhost:3000/post/register', userInfo)
+    return this.http.post('http://localhost:8080/post/register', userInfo)
     .map((res) => res.json())
   }
 
   login(userInfo) {
-    return this.http.post('http://localhost:3000/post/login', userInfo)
+    return this.http.post('http://localhost:8080/post/login', userInfo)
     .map((res) => res.json())
   }
 
@@ -56,7 +56,7 @@ export class AuthService {
 
   getProfile() {
     this.createAuthHeaders()
-    return this.http.get('http://localhost:3000/get/profile', this.options)
+    return this.http.get('http://localhost:8080/get/profile', this.options)
     .map(res => res.json())
   }
 }

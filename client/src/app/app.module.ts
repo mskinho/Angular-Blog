@@ -28,7 +28,6 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.component';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
-import { MininavComponent } from './mininav/mininav.component';
 import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
@@ -46,7 +45,6 @@ import { ContactComponent } from './contact/contact.component';
     ReturnmailComponent,
     SearchComponent,
     FeedComponent,
-    MininavComponent,
     ContactComponent
   ],
   imports: [

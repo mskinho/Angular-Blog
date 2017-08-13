@@ -8,7 +8,7 @@ export class GeneralService {
     constructor(private http: Http) {}
 
     search(input) {
-        return this.http.get('http://localhost:3000/get/search/'+input)
+        return this.http.get('http://localhost:8080/get/search/'+input)
         .map((res) => res.json())
     }
 
@@ -18,22 +18,22 @@ export class GeneralService {
             id: id,
             body: body
         }
-        return this.http.post('http://localhost:3000/post/blogpost', data)
+        return this.http.post('http://localhost:8080/post/blogpost', data)
         .map(res => res.json())
     }
 
     deleteBlogPost(id) {
-        return this.http.get('http://localhost:3000/get/deletepost/'+id)
+        return this.http.get('http://localhost:8080/get/deletepost/'+id)
         .map(res => res.json())
     }
      
     getAllPosts() {
-        return this.http.get('http://localhost:3000/get/allposts')
+        return this.http.get('http://localhost:8080/get/allposts')
         .map(res => res.json())
     }
 
-    update(id, data) {
-        return this.http.post('http://localhost:3000/post/updatepost/'+id, data)
+    updatePost(id, data) {
+        return this.http.post('http://localhost:8080/post/updatepost/'+id, data)
         .map(res => res.json())
     }
 
@@ -44,7 +44,7 @@ export class GeneralService {
             id: id
         }
         console.log(data);
-        return this.http.post('http://localhost:3000/post/postcomment/'+id, data)
+        return this.http.post('http://localhost:8080/post/postcomment/'+id, data)
         .map(res => res.json())
     }
 }
