@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdTabsModule } from '@angular/material';
+import { MdTabsModule, MdToolbarModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http'
@@ -41,6 +41,7 @@ import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.compo
   ],
   imports: [
     MdTabsModule,
+    MdToolbarModule,
     FlashMessagesModule,
     BrowserModule,
     BrowserAnimationsModule,

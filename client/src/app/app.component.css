@@ -1,0 +1,15 @@
+footer {
+    background-color: #000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    color: #CCC
+}
+
+footer p {
+    padding: 10.5px;
+    margin: 0;
+    line-height: 100%
+}

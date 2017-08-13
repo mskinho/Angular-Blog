@@ -16,6 +16,7 @@ const Comment = require('../models/comment')
 
 require('dotenv/config');
 console.log(process.env.PASSWORD)
+console.log(process.env.EMAIL)
 
 router.post('/register', (req, res) => {
     if(!req.body.email || req.body.email === '') {
