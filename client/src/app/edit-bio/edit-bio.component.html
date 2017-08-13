@@ -1,0 +1,12 @@
+<h1 class="page-header text-center">Edit Bio <small><a routerLink="/profile">Visit Profile</a></small></h1>
+<br><br>
+<div class="jumbotron">
+<h4>Current Bio:</h4>
+<p>{{bio}}</p>
+</div>
+<div class="container">
+  <div class="panel panel-default">
+    <textarea class="form-control" [(ngModel)]="newBio" required></textarea>
+    <button class="btn btn-primary btn-block" (click)="updateBio(user._id, newBio)">Update Bio</button>
+  </div>
+</div>

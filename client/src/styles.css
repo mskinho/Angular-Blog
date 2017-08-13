@@ -1,0 +1,13 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/*
+font-family: 'Roboto', sans-serif;
+font-family: 'Anton', sans-serif;
+*/
+body {
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 70px;
+}
+
+.panel-title {
+    font-family: 'Anton', sans-serif;
+}
