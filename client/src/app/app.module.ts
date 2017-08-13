@@ -7,6 +7,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http'
 
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/notauth.guard';
+
 import { AuthService } from './services/auth.service';
 import { GeneralService } from './services/general.service';
 
@@ -18,12 +21,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Profile1Component } from './profile1/profile1.component';
 
-import { AuthGuard } from './guards/auth.guard';
-import { NotAuthGuard } from './guards/notauth.guard';
+
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { EditBioComponent } from './edit-bio/edit-bio.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.component';
+import { SearchComponent } from './search/search.component';
+import { FeedComponent } from './feed/feed.component';
+import { MininavComponent } from './mininav/mininav.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,11 @@ import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.compo
     EditPostComponent,
     EditBioComponent,
     ResetpasswordComponent,
-    ReturnmailComponent
+    ReturnmailComponent,
+    SearchComponent,
+    FeedComponent,
+    MininavComponent,
+    ContactComponent
   ],
   imports: [
     MdTabsModule,

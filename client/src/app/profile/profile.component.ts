@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   id;
   bio;
 
-  feed;
   users;
 
   constructor(
@@ -38,7 +37,6 @@ export class ProfileComponent implements OnInit {
       this.posts = data.posts;
       console.log(data);
     })
-    this.loadAllPosts();
   }
 
   togglePostWrapper() {
@@ -78,24 +76,8 @@ export class ProfileComponent implements OnInit {
       this.posts = data.posts;
     })
   }
-  viewprofile(id) {
-    this.router.navigate(['/profile', id])
-  }
+ 
 
-  search(input) {
-    var reformat = input.toLowerCase()
-    this.generalService.search(reformat)
-    .subscribe(data => {
-      this.users = data.users;
-    })
-  }
-
-  loadAllPosts() {
-    this.generalService.getAllPosts()
-    .subscribe(data => {
-      this.feed = data.posts;
-    })
-  }
   editPost(id) {
     this.router.navigate(['/editpost', id])
   }

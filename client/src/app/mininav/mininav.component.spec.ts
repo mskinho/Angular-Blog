@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResetpasswordComponent } from './resetpassword.component';
+import { MininavComponent } from './mininav.component';
 
-describe('ResetpasswordComponent', () => {
-  let component: ResetpasswordComponent;
-  let fixture: ComponentFixture<ResetpasswordComponent>;
+describe('MininavComponent', () => {
+  let component: MininavComponent;
+  let fixture: ComponentFixture<MininavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResetpasswordComponent ]
+      declarations: [ MininavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResetpasswordComponent);
+    fixture = TestBed.createComponent(MininavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

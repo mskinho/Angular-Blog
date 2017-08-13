@@ -1,6 +1,4 @@
- <md-tab-group>
-  <md-tab label="Profile">
-    <h1 class="page-header text-center">Profile</h1>
+<h1 class="page-header text-center">Profile</h1>
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -17,30 +15,13 @@
          <div class="panel panel-default">
                 <div class="panel-body">
                     <span>
-                        <h1 class="panel-title pull-left" style="font-size:30px;">{{username}} <small>{{email}}</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="John Doe is sharing with you"></i></h1>
+                        <h1 class="panel-title pull-left" style="font-size:30px;">{{username}} <small>{{email}}</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="This user is verified."></i></h1>
                     </span>
                 </div>
             </div>
-      </div>
-
-  </md-tab>
-  <md-tab label="Search">
-    <h1 class="page-header text-center">Search</h1>
-    <div class="col-md-6 col-md-offset-3">
-    <input type="text" placeholder="Search.." class="form-control" [(ngModel)]="input" (keyup)="search(input)">
-    <hr>
-    <ul class="list-group">
-        <li class="list-group-item text-center" *ngFor="let user of users"><a (click)="viewprofile(user._id)">Visit {{user.username}}'s profile</a></li>
-    </ul>
-    </div>
-  </md-tab>
-
-    <md-tab label="Posts">
-             <h1 class="page-header text-center">Post</h1>
-            
-            <div class="panel panel-default" *ngFor="let post of posts">
+              <div class="panel panel-default" *ngFor="let post of posts">
                 <div class="panel-body">
-                    <h4><a href="#" style="text-decoration:none;"><strong>{{post._username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{post.posted}}</i></a></small></small></h4>
+                    <h4><a style="text-decoration:none;"><strong>{{post._username}}</strong></a> – <small><small><a style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{post.posted}}</i></a></small></small></h4>
                    
                     <hr>
                     <div class="post-content">
@@ -54,7 +35,7 @@
                                     <div class="pull-left">
                                         
                                     </div>
-                                    <h4><a href="#" style="text-decoration:none;"><strong>{{comment.commentor}}</strong></a></h4>
+                                    <h4><a style="text-decoration:none;"><strong>{{comment.commentor}}</strong></a></h4>
                                     <hr>
                                     <div class="post-content">
                                         {{comment.comment}}
@@ -71,55 +52,11 @@
                     </div>
                 </div>
             </div>
-  </md-tab>
+      </div>
 
- <md-tab label="Feed">
-    <h1 class="page-header text-center">Post feed </h1>
-         <div id="allPostWrapper" class="panel panel-default" *ngFor="let x of feed">
-                <div class="panel-body">
-                    <h4><a href="#" style="text-decoration:none;"><strong>{{x._username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{x.posted}}</i></a></small></small></h4>
-                    <hr>
-                    <div class="post-content">
-                       <p> {{x.body}} </p>
-                    </div>
-                    <hr>
-                    <div>
-                        <div class="post-content" *ngFor="let y of x.comments">
-                            <div class="panel-default">
-                                <div class="panel-body">
-                                    <h4><a href="#" style="text-decoration:none;"><strong>{{y.commentor}}</strong></a></h4>
-                                    <hr>
-                                    <div class="post-content">
-                                        {{y.comment}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-  </md-tab>
-</md-tab-group>
 
-  <!--
-     <div class="panel panel-primary text-center" *ngFor="let post of posts">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{post._username}}</h3>
-      </div>
-      <div class="panel-body">
-          {{post.body}}
-      </div>
-      <div class="panel-body">
-        <ul class="list-group">  
-          <li class="list-group-item"><input type="text" placeholder="Comment.." class="form-control" name="comment" [(ngModel)]="comment"></li>
-          <li class="list-group-item"><button class="btn btn-primary btn-block" (click)="postComment(post._id, comment, Cusername)">Comment</button></li>
-          <hr>
-          <li class="list-group-item" *ngFor="let comment of post.comments">
-            <h4>{{comment.commentor}}</h4>
-            <p>{{comment.comment}}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-    -->
+  
+
+            
+          
+

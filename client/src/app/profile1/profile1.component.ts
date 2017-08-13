@@ -13,16 +13,18 @@ export class Profile1Component implements OnInit {
   private sub: any;
   user;
 
-  email;
-  username;
+  email: string;
+  username: string;
   id;
-  bio;
+  bio: string;
   posts;
   feed;
 
   Cusername;
   Cemail;
   Cid;
+
+  comment: string;
 
   constructor(
     private generalService: GeneralService,
@@ -34,8 +36,13 @@ export class Profile1Component implements OnInit {
   
 
   ngOnInit() {
+    this.loadPosts()
+    this.loadAllPosts()
+    this.loadCurrentUser()
+  }
 
-      this.sub = this.activeRoute.params.subscribe(params => {
+  loadPosts() {
+    this.sub = this.activeRoute.params.subscribe(params => {
        return this.http.get('http://localhost:3000/get/findoneuser/'+params.id)
        .map((res) => res.json())
        .subscribe(data => {
@@ -46,8 +53,6 @@ export class Profile1Component implements OnInit {
          this.bio = data.user.bio;
        })
     }) 
-    this.loadAllPosts()
-    this.loadCurrentUser()
   }
 
   loadCurrentUser() {
@@ -59,13 +64,7 @@ export class Profile1Component implements OnInit {
       console.log(this.Cusername);
     })
   }
-   search(input) {
-    var reformat = input.toLowerCase()
-    this.generalService.search(reformat)
-    .subscribe(data => {
-      this.user = data.users;
-    })
-  }
+  
 
   viewprofile(id) {
     this.router.navigate(['/profile', id])
@@ -82,19 +81,9 @@ export class Profile1Component implements OnInit {
   postComment(id, comment, username) {
    this.generalService.postComment(id, comment, username)
    .subscribe(data => {
-     console.log(data);
+      this.loadPosts();
    })
-       this.sub = this.activeRoute.params.subscribe(params => {
-       return this.http.get('http://localhost:3000/get/findoneuser/'+params.id)
-       .map((res) => res.json())
-       .subscribe(data => {
-         this.email = data.user.email;
-         this.username = data.user.username;
-         this.id = data.user._id;
-         this.bio = data.user.bio;
-         this.posts = data.posts;
-       })
-    }) 
+    this.comment = '';
  }
 
 }

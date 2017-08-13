@@ -18,6 +18,29 @@ require('dotenv/config');
 console.log(process.env.PASSWORD)
 console.log(process.env.EMAIL)
 
+router.post('/contact', (req, res) => {
+    if(!req.body.message) {
+        res.json({success: false, message: 'You must enter a message before sending.'})
+    } else {
+        var smtpTransport = nodemailer.createTransport({
+				service: 'Gmail',
+				auth: {
+					user: process.env.EMAIL,
+					pass: process.env.PASSWORD,
+				}
+			});
+         var mailOptions = {
+        to: process.env.EMAIL,
+        from: 'Contact | Help',
+        subject: 'Contact | Help',
+        text: req.body.message
+         };
+        smtpTransport.sendMail(mailOptions, function(err) {
+            res.json({success: true, message: 'Thank you for contacting us! we will get back to you as soon as possible.'})
+            done(err, 'done');
+        })
+    }
+})
 router.post('/register', (req, res) => {
     if(!req.body.email || req.body.email === '') {
         res.json({success: false, message: 'You must provide an email!'})
