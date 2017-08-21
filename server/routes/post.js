@@ -15,8 +15,6 @@ const Post = require('../models/blogpost')
 const Comment = require('../models/comment')
 
 require('dotenv/config');
-console.log(process.env.PASSWORD)
-console.log(process.env.EMAIL)
 
 router.post('/contact', (req, res) => {
     if(!req.body.message) {
