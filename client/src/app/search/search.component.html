@@ -1,8 +1,14 @@
-<h1 class="page-header text-center">Search</h1>
-  <div class="col-md-6 col-md-offset-3">
-  <input type="text" placeholder="Search.." class="form-control" [(ngModel)]="input" (keyup)="search(input)">
-  <hr>
-  <ul class="list-group">
+<div class="card my-4">
+<h5 class="card-header">Search</h5>
+<div class="card-body">
+  <div class="input-group">
+    <input type="text" placeholder="Search.." class="form-control" [(ngModel)]="input" (keyup)="search(input)">
+    <span class="input-group-btn">
+      <button class="btn btn-secondary" type="button" (click)="search(input)">Go!</button>
+    </span>
+  </div>
+</div>
+ <ul class="list-group">
       <li class="list-group-item text-center" *ngFor="let user of users"><a (click)="viewprofile(user._id)">Visit {{user.username}}'s profile</a></li>
   </ul>
-  </div>
+</div>

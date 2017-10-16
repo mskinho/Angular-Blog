@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
+
 const dbconfig = require('./config/database')
 const postRoute = require('./routes/post')
 const getRoute = require('./routes/get')
@@ -16,9 +17,12 @@ mongoose.connect(dbconfig.database, () => {
 
 // ng build -prod --aot=false
 
+/*
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
+
+*/
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

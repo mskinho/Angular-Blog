@@ -1,7 +1,26 @@
-<div class="container">
-<div class="col-md-6 col-md-offset-3 col-xs-12 col-sm-12">
-  <h1>Hey! you ran in to a problem? <small>contact us and we'll get it solved!</small> </h1>
-  <textarea class="form-control" [(ngModel)]="message" required></textarea>
-  <button class="btn btn-default btn-block" (click)="send(message)">Send</button>
-</div>
-</div>
+ <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+	        <h1 class="my-4">Hey! you ran in to a problem? <small>contact us and we'll get it solved!</small> </h1>
+		    <textarea class="form-control" [(ngModel)]="message" required></textarea>
+		    <button class="btn btn-default btn-block" (click)="send(message)">Send</button>
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+    		<app-sidemenu></app-sidemenu>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->

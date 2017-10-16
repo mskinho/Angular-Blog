@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdTabsModule, MdToolbarModule } from '@angular/material';
+import { MatTabsModule, MatToolbarModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http'
@@ -29,6 +29,7 @@ import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.compo
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
 import { ContactComponent } from './contact/contact.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +46,12 @@ import { ContactComponent } from './contact/contact.component';
     ReturnmailComponent,
     SearchComponent,
     FeedComponent,
-    ContactComponent
+    ContactComponent,
+    SidemenuComponent
   ],
   imports: [
-    MdTabsModule,
-    MdToolbarModule,
+    MatTabsModule,
+    MatToolbarModule,
     FlashMessagesModule,
     BrowserModule,
     BrowserAnimationsModule,

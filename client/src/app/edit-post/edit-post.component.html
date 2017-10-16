@@ -1,15 +1,35 @@
-<h1 class="page-header">Edit Post <small><a routerLink="/profile">Visit Profile</a></small></h1>
-  
-<div class="panel panel-default">
-      <div class="panel-body">
-          <h4><a href="#" style="text-decoration:none;"><strong>{{username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{posted}}</i></a></small></small></h4>
-        
-          <hr>
-          <div class="post-content">
-              <p> {{newpost}} </p>
-          </div>
-      </div>
-  </div>
+<!-- Page Content -->
+    <div class="container">
 
-  <textarea class="form-control" [(ngModel)]="newpost" required></textarea>
-<button class="btn btn-default btn-block" (click)="update(id, newpost)">Save Post</button>
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            	<h1 class="my-4">Edit Post <small><a routerLink="/profile">Visit Profile</a></small></h1>
+            	<div class="panel panel-default">
+			      <div class="panel-body">
+			          <h4><a style="text-decoration:none;"><strong>{{username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{posted}}</i></a></small></small></h4>
+			        
+			          <hr>
+			          <div class="post-content">
+			              <p> {{newpost}} </p>
+			          </div>
+			      </div>
+			  </div>
+			    <textarea class="form-control" [(ngModel)]="newpost" required></textarea>
+				<button class="btn btn-default btn-block" (click)="update(id, newpost)">Save Post</button>
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <app-sidemenu></app-sidemenu>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->

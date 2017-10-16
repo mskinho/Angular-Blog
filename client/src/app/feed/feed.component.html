@@ -1,25 +1,47 @@
-<h1 class="page-header text-center">Post feed </h1>
-    <div class="panel panel-default" *ngFor="let x of feed">
-          <div class="panel-body">
-              <h4><a href="#" style="text-decoration:none;"><strong>{{x._username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{x.posted}}</i></a></small></small></h4>
-              <hr>
-              <div class="post-content">
-                  <p> {{x.body}} </p>
-              </div>
-              <hr>
-              <div>
-                  <div class="post-content" *ngFor="let y of x.comments">
-                      <div class="panel-default">
-                          <div class="panel-body">
-                              <h4><a href="#" style="text-decoration:none;"><strong>{{y.commentor}}</strong></a></h4>
-                              <hr>
-                              <div class="post-content">
-                                  {{y.comment}}
+
+      <!-- Page Content -->
+  <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <h1 class="my-4">Post feed</h1>
+                <div class="panel panel-default" *ngFor="let x of feed">
+                  <div class="panel-body">
+                      <h4><a href="#" style="text-decoration:none;"><strong>{{x._username}}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> {{x.posted}}</i></a></small></small></h4>
+                      <hr>
+                      <div class="post-content">
+                          <p> {{x.body}} </p>
+                      </div>
+                      <hr>
+                      <div>
+                          <div class="post-content" *ngFor="let y of x.comments">
+                              <div class="panel-default">
+                                  <div class="panel-body">
+                                      <h4><a href="#" style="text-decoration:none;"><strong>{{y.commentor}}</strong></a></h4>
+                                      <hr>
+                                      <div class="post-content">
+                                          {{y.comment}}
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
+                    
                   </div>
               </div>
-            
-          </div>
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <app-sidemenu></app-sidemenu>
+
+        </div>
+
       </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->

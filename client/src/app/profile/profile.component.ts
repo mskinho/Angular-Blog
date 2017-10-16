@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
 
   users: Array<any>;
 
+  comment: string;
+
   constructor(
     private _authService: AuthService, 
     private generalService: GeneralService, 
@@ -56,8 +58,8 @@ export class ProfileComponent implements OnInit {
     this.generalService.deleteBlogPost(id)
     .subscribe(data => {
       this._flashMessagesService.show(data.message, { cssClass: 'alert-success',timeout: 2000 });
+      this.getUser();
     })
-     this.getUser();
   }
  
 
@@ -72,7 +74,8 @@ export class ProfileComponent implements OnInit {
  postComment(id, comment, username) {
    this.generalService.postComment(id, comment, username)
    .subscribe(data => {
+     this.getUser();
+     this.comment = "";
    })
-    this.getUser();
  }
 }
