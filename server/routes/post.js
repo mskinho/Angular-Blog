@@ -5,6 +5,8 @@ const mg = require('nodemailer-mailgun-transport')
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
 const async = require('async')
+const multer  = require('multer')
+const path = require('path')
 
 const config = require('../config/database')
 
@@ -15,6 +17,19 @@ const Post = require('../models/blogpost')
 const Comment = require('../models/comment')
 
 require('dotenv/config');
+
+var storage = multer.diskStorage({
+    destination: '../client/src/assets/',
+    filename: function (req, file, cb) {
+      crypto.pseudoRandomBytes(16, function (err, raw) {
+        if (err) return cb(err)
+  
+        cb(null, raw.toString('hex') + path.extname(file.originalname))
+      })
+    }
+  })
+  
+var upload = multer({ storage: storage })
 
 router.post('/contact', (req, res) => {
     if(!req.body.message) {
@@ -142,14 +157,44 @@ router.post('/updatebio/:id', (req, res) => {
     })
 })
 
+router.post('/upload/:id',upload.single('avatar'), (req, res) => {
+  User.findOne({_id: req.params.id}, (err, user) => {
+     if(err) {
+      res.json({success: false, message: 'Something went wrong..'})
+     } else {
+       if(!user) {
+        res.json({success: false, message: 'That user does not exist'})
+       } else {
+          var newUser = user;
+          newUser.imageURL = req.file.filename;
+          user.update(newUser, (err) => {
+            if(err) {
+              res.json({success: false, message: 'Your image could not be uploaded'})
+            } else {
+              res.json({success: false, message: 'Image uploaded'})
+            }
+          })
+       }
+     }
+  })
+})
+
 router.post('/blogpost', (req, res) => {
     if(!req.body.body) {
-        res.json({success: false, message: 'Please enter a message before posting'})
+        res.json({success: false, message: 'Please enter a message before posting!'})
     } else {
+      if(!req.body.title) {
+        res.json({success: false, message: 'Please enter a title and try again!'})
+      } else {
         if(!req.body.id) {
             res.json({success: false, message: 'An error occured, Please try again.'})
         } else {
-            let post = new Post({
+          if(!req.body.imageURL) {
+            res.json({success: false, message: 'You must choose a file!'})
+          } else {
+             let post = new Post({
+                title: req.body.title,
+                imageURL: req.body.imageURL,
                 body: req.body.body,
                 _username: req.body.username,
                 _userId: req.body.id
@@ -161,7 +206,9 @@ router.post('/blogpost', (req, res) => {
                     res.json({success: true, message: 'Blog post saved!'})
                 }
             })
+          } 
         }
+      }
     }
 })
 
@@ -191,10 +238,12 @@ router.post('/postcomment/:id', (req, res) => {
             if(!post) {
                 res.json({success: false, message: 'No post was found.'})
             } else {
+              console.log(req.body);
                var newPost = post;
                var comment = new Comment({
                    comment: req.body.comment,
-                   commentor: req.body.username
+                   commentor: req.body.username,
+                   imageURL: req.body.imageURL
                })
                 newPost.comments.push(comment);
                 post.save(newPost, (err) => {

@@ -9,7 +9,7 @@ import { GeneralService } from '../services/general.service';
 })
 export class HomeComponent implements OnInit {
  feed: Array<any>;
-
+ 
   constructor(
     private generalService: GeneralService,
     private authService: AuthService

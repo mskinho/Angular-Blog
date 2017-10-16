@@ -7,6 +7,7 @@ const userSchema = new Schema({
     bio: {type: String, required: true, default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.'},
     username: {type: String, required: true, unique: true, lowercase: true},
     password: {type: String, required: true },
+    imageURL: {type: String, default: "default.png"},
     resetPasswordToken: String,
 	resetPasswordExpires: Date
 })

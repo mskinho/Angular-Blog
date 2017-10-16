@@ -97,6 +97,20 @@ router.get('/findoneuser/:id', (req, res) => {
     })
 })
 
+router.get('/loadPost/:id', (req, res) => {
+  Post.findOne({_id: req.params.id}, (err, post) => {
+    if(err) {
+      res.json({success: false, message: 'That post does not exist'})
+    } else {
+      if(!post) {
+        res.json({success: false, message: 'That post could not be loaded'})
+      } else {
+        res.json({success: true, message: 'Post loaded', post:post})
+      }
+    }
+  })
+})
+
 router.use((req, res, next) => {
     const token = req.headers['authorization']
     if(!token) {
@@ -113,7 +127,7 @@ router.use((req, res, next) => {
     }
 })
 router.get('/profile', (req, res) => {
-    User.findOne({_id: req.dec._id}).select('username email bio').exec((err, user) => {
+    User.findOne({_id: req.dec._id}).select('username email bio imageURL').exec((err, user) => {
         if(err) {
             res.json({success: false, message: err})
         } else {

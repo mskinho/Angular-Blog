@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
     comment: {type: String, required: true},
     commentor: {type: String, required: true},
+    imageURL: {type: String, required: true},
     posted: {type: Date, default: Date.now}
 })
 

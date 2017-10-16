@@ -13,24 +13,26 @@ import { ReturnmailComponent } from './resetpassword/returnmail/returnmail.compo
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
 import { ContactComponent } from './contact/contact.component';
+import { SinglePostComponent } from './single-post/single-post.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notauth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'feed', component: FeedComponent},
-  { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [NotAuthGuard]},
-  { path: 'login', component: LoginComponent, canActivate: [NotAuthGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard]},
-  { path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
-  { path: 'help', component: ContactComponent, canActivate: [AuthGuard]},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  { path: 'profile/:id', component: Profile1Component, canActivate: [AuthGuard]},
-  { path: 'editpost/:id', component: EditPostComponent, canActivate: [AuthGuard]},
-  { path: 'editbio/:id', component: EditBioComponent, canActivate: [AuthGuard]},
-  { path: 'returnmail/:token', component: ReturnmailComponent, canActivate: [NotAuthGuard]},
-  { path: '**', component: HomeComponent}
+  { path: '',                     component: HomeComponent                                        },
+  { path: 'feed',                 component: FeedComponent                                        },
+  { path: 'post/:id',             component: SinglePostComponent                                  },
+  { path: 'resetpassword',        component: ResetpasswordComponent, canActivate: [NotAuthGuard]  },
+  { path: 'login',                component: LoginComponent,         canActivate: [NotAuthGuard]  },
+  { path: 'register',             component: RegisterComponent,      canActivate: [NotAuthGuard]  },
+  { path: 'search',               component: SearchComponent,        canActivate: [AuthGuard]     },
+  { path: 'help',                 component: ContactComponent,       canActivate: [AuthGuard]     },
+  { path: 'profile',              component: ProfileComponent,       canActivate: [AuthGuard]     },
+  { path: 'profile/:id',          component: Profile1Component,      canActivate: [AuthGuard]     },
+  { path: 'editpost/:id',         component: EditPostComponent,      canActivate: [AuthGuard]     },
+  { path: 'editbio/:id',          component: EditBioComponent,       canActivate: [AuthGuard]     },
+  { path: 'returnmail/:token',    component: ReturnmailComponent,    canActivate: [NotAuthGuard]  },
+  { path: '**',                   component: HomeComponent}
   
 ]
 

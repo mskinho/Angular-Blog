@@ -30,6 +30,7 @@ import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
 import { ContactComponent } from './contact/contact.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { SinglePostComponent } from './single-post/single-post.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
     SearchComponent,
     FeedComponent,
     ContactComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    SinglePostComponent
   ],
   imports: [
     MatTabsModule,
