@@ -17,15 +17,15 @@ router.get('/returnmail/:token', function(req, res){
 });
 
 router.get('/search/:input', (req, res) => {
-    User.find({username: req.params.input}, (err, users) => {
+    Post.find({title: req.params.input}, (err, posts) => {
         if(err) {
             res.json({success: false, message: 'An error occured.'})
         } else {
-            if(!users) {
-                res.json({success: false, message: 'No users found.'})
+            if(!posts) {
+                res.json({success: false, message: 'No posts found.'})
             } else {
-                if(users) {
-                    res.json({success: true, users: users})
+                if(posts) {
+                    res.json({success: true, posts: posts})
                 }
             }
         }

@@ -53,7 +53,7 @@ export class SinglePostComponent implements OnInit {
   		.subscribe(res => {
   			console.log(res);
   			this.post = res.post;
-  			this.comments = res.post.comments;
+  			this.comments = res.post.comments.reverse();
   			this.imageURL = res.post.imageURL;
   			this.title = res.post.title;
   			this.id = res.post._id;

@@ -76,12 +76,5 @@ export class Profile1Component implements OnInit {
     })
   }
 
-  postComment(id, comment, username) {
-   this.generalService.postComment(id, comment, username)
-   .subscribe(data => {
-      this.loadPosts();
-   })
-    this.comment = '';
- }
-
+ 
 }

@@ -14,19 +14,18 @@ export class ProfileComponent implements OnInit {
 
   username: string;
   posts: Array<object>;
-  title: string;
+  title: string = "";
+  body: string = "";
   email: string;
   id: string;
   imageURL: string;
   bio: string;
 
-  body: string;
-
   users: Array<object>;
-
   comment: string;
-
   formData: any;
+  
+  disableStuff: boolean = true;
 
   constructor(
     private _authService: AuthService, 
@@ -57,6 +56,13 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/post', id]);
   }
   
+  checkLength() {
+    if(this.body.length > 0 && this.title.length > 0) {
+      this.disableStuff = false;
+    } else {
+      this.disableStuff = true;
+    }
+  }
   post(id, body, username, title) {
     this.generalService.makeBlogPost(id, body, username, title, this.imageURL)
     .subscribe(data => {

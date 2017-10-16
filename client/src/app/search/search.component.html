@@ -9,6 +9,6 @@
   </div>
 </div>
  <ul class="list-group">
-      <li class="list-group-item text-center" *ngFor="let user of users"><a (click)="viewprofile(user._id)">Visit {{user.username}}'s profile</a></li>
+      <li style="overflow:hidden;cursor:pointer;" class="list-group-item text-center" *ngFor="let post of posts"><a (click)="visitSinglePost(post._id)">{{post.title}}</a></li>
   </ul>
 </div>

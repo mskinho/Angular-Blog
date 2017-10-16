@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 })
 export class SearchComponent implements OnInit {
    input: string;
-   users: Array<any>;
+   posts: Array<any>;
    
    constructor(
     private _authService: AuthService, 
@@ -32,8 +32,12 @@ export class SearchComponent implements OnInit {
     var reformat = input.toLowerCase()
     this.generalService.search(reformat)
     .subscribe(data => {
-      this.users = data.users;
+      this.posts = data.posts;
     })
+  }
+
+   visitSinglePost(id) {
+    this.router.navigate(['/post', id]);
   }
 
 }
